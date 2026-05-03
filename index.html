@@ -26,7 +26,6 @@
             --border: #2c3e2c;
             --btn-bg: #2a3a2a;
             --btn-hover: #3c5a3c;
-            --map-filter: brightness(0.8);
         }
 
         body.light {
@@ -38,7 +37,6 @@
             --border: #cfddc4;
             --btn-bg: #e0e8d8;
             --btn-hover: #cbdcc0;
-            --map-filter: brightness(1);
         }
 
         body {
@@ -108,6 +106,7 @@
             color: white;
         }
 
+        /* スポンサー枠 */
         .sponsor-area {
             background: var(--bg-card);
             border-radius: 28px;
@@ -117,35 +116,38 @@
             border: 1px dashed var(--accent);
             font-size: 0.9rem;
         }
-
         .sponsor-img {
             max-width: 100%;
             height: auto;
             border-radius: 20px;
             margin-top: 0.5rem;
         }
+        .sponsor-link {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-all;
+        }
 
+        /* マップ */
         .map-container {
             border-radius: 28px;
             overflow: hidden;
             margin: 1.5rem 0;
             border: 2px solid var(--border);
         }
-
         iframe {
             width: 100%;
-            height: 320px;
+            height: 360px;
             border: 0;
-            filter: var(--map-filter);
         }
 
+        /* カード一覧 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.8rem;
             margin: 1.5rem 0;
         }
-
         .card {
             background: var(--bg-card);
             border-radius: 28px;
@@ -154,40 +156,33 @@
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid var(--border);
         }
-
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
-
         .card-img {
             width: 100%;
             height: 170px;
             object-fit: cover;
             background: #2a3a2a;
         }
-
         .card-content {
             padding: 1rem 1.2rem 1.2rem;
         }
-
         .spot-name {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.2rem;
         }
-
         .spot-location {
             font-size: 0.8rem;
             color: var(--text-secondary);
             margin-bottom: 0.6rem;
         }
-
         .spot-desc-short {
             font-size: 0.85rem;
             margin-bottom: 0.8rem;
         }
-
         .detail-link {
             background: var(--accent);
             display: inline-block;
@@ -199,13 +194,13 @@
             border: none;
         }
 
+        /* 詳細ページ */
         .detail-view {
             background: var(--bg-card);
             border-radius: 32px;
             padding: 1.5rem;
             margin: 1.5rem 0;
         }
-
         .detail-img {
             width: 100%;
             max-height: 350px;
@@ -213,12 +208,10 @@
             border-radius: 24px;
             margin-bottom: 1rem;
         }
-
         .back-btn {
             background: var(--btn-bg);
             margin-bottom: 1rem;
         }
-
         .official-link {
             display: inline-block;
             margin-top: 1rem;
@@ -228,31 +221,22 @@
             border-radius: 40px;
             text-decoration: none;
         }
-
         .info-section {
             margin: 1.2rem 0;
             padding: 1rem;
             background: var(--bg-body);
             border-radius: 24px;
         }
-
         .info-section h3 {
             margin-bottom: 0.5rem;
             color: var(--accent);
         }
-
         footer a {
             color: var(--accent);
             text-decoration: none;
         }
-
         .hidden {
             display: none;
-        }
-
-        hr {
-            margin: 1rem 0;
-            border-color: var(--border);
         }
     </style>
 </head>
@@ -276,33 +260,41 @@
 
     <!-- メイン画面 -->
     <div id="mainView">
-        <!-- スポンサー上 -->
+        <!-- スポンサー枠 上部 (後から画像URLと公式URLを設定可能) -->
         <div class="sponsor-area" id="sponsorTop">
+            <!-- 
+                スポンサー画像を追加する場合:
+                <a href="https://公式サイト.com" target="_blank" rel="noopener">
+                    <img class="sponsor-img" src="https://あなたの画像URL.jpg" alt="スポンサー名">
+                </a>
+                必要に応じてテキストも変更してください。
+            -->
             <div class="sponsor-placeholder">
-                📢 スポンサー枠<br>
-                <img class="https://upload.wikimedia.org/wikipedia/commons/8/82/Japan_Kanto_Map.png?utm_source=en.wikivoyage.org&utm_campaign=index&utm_content=original" src="https://tokyocheapo.com/all-locations/" alt="sponsor">
-                <p><small>後でイメージと公式サイトに差し替え可</small></p>
+                📢 スポンサー枠 (画像URL + 公式リンクを後から追加)<br>
+                <img class="sponsor-img" src="https://via.placeholder.com/800x120?text=Your+Banner+Here" alt="sponsor placeholder">
+                <p><small>※ 上記イメージとリンクを編集してください</small></p>
             </div>
         </div>
 
-        <!-- スポットグリッド -->
+        <!-- スポット一覧グリッド -->
         <div id="spotsGrid" class="grid"></div>
 
-        <!-- スポンサー下 -->
+        <!-- スポンサー枠 下部 -->
         <div class="sponsor-area" id="sponsorBottom">
             <div class="sponsor-placeholder">
                 🤝 パートナー募集<br>
-                <img class="sponsor-img" src="https://via.placeholder.com/800x100?text=Sponsor+Zone" alt="sponsor bottom">
+                <img class="sponsor-img" src="https://via.placeholder.com/800x120?text=Sponsor+Zone" alt="sponsor bottom">
+                <p><small>画像URLと公式サイトを差し替え可能</small></p>
             </div>
         </div>
 
-        <!-- Google Map (下部) -->
+        <!-- Googleマップ: 関東広域（東京・埼玉・千葉・神奈川・茨城・栃木・群馬を中心） -->
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25940.14732547666!2d139.75448987021512!3d35.68039932664863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f750b%3A0xadf2a0bee3a6d1b2!2sTokyo%20Station!5e0!3m2!1sen!2sjp!4v1714567890123!5m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m54!1m12!1m3!1d207706.4123017664!2d139.4071143626609!3d35.96906670420519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m39!1i0!3e6!4m5!1s0x60188b86fcb60fa9%3A0x563a4b6afbfbb5fa!2z5p2x5Lqs6aeF!3m2!1d35.6803994!2d139.7690174!4m5!1s0x60188d63949e9c6f%3A0xaf530de36b6f0e89!2z5Z-654ix55m96KGX!3m2!1d35.8717423!2d139.6483857!4m5!1s0x6018d0b8b03dcd1f%3A0x27da1be790c099c5!2z5Y2D6JyJ5bed5Yy66JGJ5b-D5bGL!3m2!1d35.9692945!2d140.5399553!4m5!1s0x6018fb171f282793%3A0xba2e9b29e8cf154d!2z6Zai5Y2D5biC!3m2!1d36.3412747!2d139.5078493!4m5!1s0x601ef9d16b47ccd1%3A0xfa41df2b3ab2f59b!2z44Gz44KT44Gu5bGL44K444O8!3m2!1d35.9013223!2d139.719155!4m5!1s0x6018bbe222e7f767%3A0x31efbdd06f02b982!2z6JOy6JCJ5bed44K544Oz44O8!3m2!1d35.888112499999995!2d139.7261013!5e0!3m2!1sen!2sjp!4v1714567890123" allowfullscreen loading="lazy"></iframe>
         </div>
     </div>
 
-    <!-- 詳細画面（初期非表示） -->
+    <!-- 詳細画面 -->
     <div id="detailView" class="detail-view hidden"></div>
 
     <footer>
@@ -312,8 +304,7 @@
 </div>
 
 <script>
-    // ---------- 多言語データ (英語基準、日本語・イタリア語・ロシア語対応) ----------
-    // 各スポットに詳細情報 (nearby, travelTips, access) を追加
+    // ---------- スポットデータ（全12ヶ所・詳細情報付き）----------
     const spots = [
         { id:1, img:"https://picsum.photos/id/104/400/250", officialUrl:"https://hitachikaihin.jp/",
           name:{en:"Hitachi Seaside Park",ja:"国営ひたち海浜公園",it:"Parco Costiero Hitachi",ru:"Прибрежный парк Хитачи"},
@@ -321,30 +312,97 @@
           shortDesc:{en:"Blue nemophila & green kochia",ja:"青いネモフィラと緑のコキア",it:"Nemorilla blu e kochia verde",ru:"Голубая немофила и зелёная кохия"},
           fullDesc:{en:"Vast park famous for spring nemophila and autumn kochia. Stunning contrast.",ja:"春のネモフィラ、秋のコキアが有名な広大な公園。絶景コントラスト。",it:"Famoso per nemorilla primaverile e kochia autunnale. Contrasto mozzafiato.",ru:"Огромный парк, известный весенней немофилой и осенней кохией. Потрясающий контраст."},
           nearby:{en:"Oarai Isosaki Shrine (sea torii), Fukuroda Falls",ja:"大洗磯前神社（海の鳥居）、袋田の滝",it:"Santuario Oarai Isosaki, Cascate Fukuroda",ru:"Святилище Оарай Исосаки, водопад Фукурода"},
-          travelTips:{en:"Rent a bike; go early morning to avoid crowds; check bloom calendar.",ja:"レンタサイクル推奨、混雑避けて早朝に、開花カレンダー要確認。",it:"Noleggia bici, vai la mattina presto, controlla calendario fioritura.",ru:"Возьмите велосипед, приезжайте рано утром, сверьтесь с календарём цветения."},
-          access:{en:"20 min by bus from JR Katsuta Station.",ja:"JR勝田駅からバスで20分。",it:"20 min in autobus da stazione JR Katsuta.",ru:"20 минут на автобусе от станции JR Кацута."} },
+          travelTips:{en:"Rent a bike; go early morning; check bloom calendar.",ja:"レンタサイクル推奨、早朝がベスト、開花カレンダー確認。",it:"Noleggia bici, vai al mattino, controlla calendario fioritura.",ru:"Возьмите велосипед, приезжайте утром, сверьтесь с календарём цветения."},
+          access:{en:"20 min by bus from JR Katsuta Station.",ja:"JR勝田駅からバス20分。",it:"20 min in autobus da stazione JR Katsuta.",ru:"20 минут на автобусе от станции JR Кацута."} },
         { id:2, img:"https://picsum.photos/id/15/400/250", officialUrl:"https://motherfarm.co.jp/",
           name:{en:"Mother Farm",ja:"マザー牧場",it:"Mother Farm",ru:"Мать Ферма"},
           location:{en:"Chiba",ja:"千葉県",it:"Chiba",ru:"Тиба"},
           shortDesc:{en:"3.5M rapeseed with Mt.Fuji",ja:"富士山を背景に350万本菜の花",it:"3,5M di colza con Monte Fuji",ru:"3,5 млн рапса на фоне Фудзи"},
           fullDesc:{en:"Vast fields of rapeseed flowers and seasonal blooms. Great view of Mt.Fuji.",ja:"広大な菜の花畑と季節の花々。富士山の絶景。",it:"Campi di colza e fiori stagionali. Vista sul Monte Fuji.",ru:"Огромные поля цветущего рапса, сезонные цветы. Вид на Фудзи."},
           nearby:{en:"Tokyo German Village, Kameyama Dam",ja:"東京ドイツ村、亀山ダム",it:"Villaggio Tedesco di Tokyo, Diga Kameyama",ru:"Немецкая деревня Токио, плотина Камэяма"},
-          travelTips:{en:"Try strawberry picking in spring; bring sunscreen; sheep show is fun.",ja:"春はいちご狩り、日焼け止め必須、羊のショー楽しい。",it:"Raccogli fragole in primavera; crema solare; spettacolo delle pecore.",ru:"Сбор клубники весной, крем от загара, шоу овец."},
-          access:{en:"Bus from JR Futtsu Station or direct highway bus from Tokyo.",ja:"JR富津駅からバス、または東京から高速バス。",it:"Autobus da stazione Futtsu o diretto da Tokyo.",ru:"Автобус от станции Футцу или прямой автобус из Токио."} },
+          travelTips:{en:"Strawberry picking in spring; sunscreen; sheep show.",ja:"春はいちご狩り、日焼け止め、羊のショー。",it:"Raccogli fragole, crema solare, spettacolo pecore.",ru:"Сбор клубники, крем от загара, шоу овец."},
+          access:{en:"Bus from JR Futtsu Station or highway bus from Tokyo.",ja:"JR富津駅からバス、または東京から高速バス。",it:"Autobus da stazione Futtsu o diretto da Tokyo.",ru:"Автобус от станции Футцу или прямой автобус из Токио."} },
         { id:3, img:"https://picsum.photos/id/96/400/250", officialUrl:"https://www.ibarakiguide.jp/spot/ayame/",
-          name:{en:"Suigo Itako Ayame Garden",ja:"水郷潮来あやめ園",it:"Giardino degli Iris",ru:"Сад ирисов Суйго Итако"},
+          name:{en:"Suigo Itako Ayame Garden",ja:"水郷潮来あやめ園",it:"Giardino degli Iris Suigo Itako",ru:"Сад ирисов Суйго Итако"},
           location:{en:"Ibaraki",ja:"茨城県",it:"Ibaraki",ru:"Ибараки"},
           shortDesc:{en:"500 iris varieties, boat viewing",ja:"500品種のアヤメ、舟から鑑賞",it:"500 varietà di iris, visita in barca",ru:"500 сортов ирисов, осмотр с лодки"},
           fullDesc:{en:"Beautiful water garden where you can cruise among irises.",ja:"アヤメの中を舟で巡る水郷情緒豊かな庭園。",it:"Giardino acquatico con giri in barca tra iris.",ru:"Прекрасный водный сад с прогулками на лодке среди ирисов."},
           nearby:{en:"Sawara Merchant Town, Kashima Shrine",ja:"佐原商家町、鹿島神宮",it:"Città mercantile Sawara, Santuario Kashima",ru:"Купеческий город Савара, святилище Касима"},
-          travelTips:{en:"Take a traditional boat (yakatabune); early June best bloom.",ja:"伝統的な屋形船に乗船、見頃は6月上旬。",it:"Barca tradizionale; miglior periodo inizio giugno.",ru:"Покатайтесь на традиционной лодке; лучшее цветение в начале июня."},
-          access:{en:"Walk from JR Itako Station (15 min) or boat from Itako Bridge.",ja:"JR潮来駅から徒歩15分、潮来橋から舟も可。",it:"15 min a piedi da stazione Itako o barca.",ru:"15 минут пешком от станции Итако или на лодке."} },
-        // ... 以下、残りのスポットも同様に詳細情報を付加。スペースの都合で4つ目以降は簡略表記しますが、実際のコードは全て完成済みです。
-        // （実際の納品コードでは全12スポットに同様の詳細情報を記載しています。ここでは構造を示すため一部のみ表示）
+          travelTips:{en:"Traditional yakatabune boat; early June best bloom.",ja:"伝統的な屋形船、見頃は6月上旬。",it:"Barca tradizionale yakatabune; inizio giugno.",ru:"Традиционная лодка якатабунэ; начало июня."},
+          access:{en:"15 min walk from JR Itako Station, or boat from Itako Bridge.",ja:"JR潮来駅から徒歩15分、潮来橋から舟も可。",it:"15 min a piedi da stazione Itako o barca.",ru:"15 минут пешком от станции Итако или на лодке."} },
+        { id:4, img:"https://picsum.photos/id/28/400/250", officialUrl:"https://www.city.narita.chiba.jp/",
+          name:{en:"Reimeisan Agricultural Park",ja:"黎明山農業公園",it:"Parco Agricolo Reimeisan",ru:"Сельскохозяйственный парк Рэймэйсан"},
+          location:{en:"Chiba",ja:"千葉県",it:"Chiba",ru:"Тиба"},
+          shortDesc:{en:"Tulips & Dutch windmill",ja:"チューリップとオランダ風車",it:"Tulipani e mulino olandese",ru:"Тюльпаны и голландская мельница"},
+          fullDesc:{en:"Colorful tulip fields with a windmill. Great for photos.",ja:"風車を背景にしたカラフルなチューリップ畑。",it:"Campi di tulipani colorati con mulino a vento.",ru:"Красочные поля тюльпанов с ветряной мельницей."},
+          nearby:{en:"Narita-san Shinshoji Temple, Boso no Mura",ja:"成田山新勝寺、房総のむら",it:"Tempio Narita-san, Boso no Mura",ru:"Храм Нарита-сан, Босо но Мура"},
+          travelTips:{en:"April best; combine with Narita Shinshoji temple visit.",ja:"4月が見頃、成田山新勝寺と合わせて。",it:"Aprile è il periodo migliore, visita anche il tempio.",ru:"Лучшее время апрель, посетите храм Нарита-сан."},
+          access:{en:"Bus from JR Narita Station (15 min).",ja:"JR成田駅からバス15分。",it:"Bus da stazione Narita (15 min).",ru:"Автобус от станции Нарита (15 минут)."} },
+        { id:5, img:"https://picsum.photos/id/66/400/250", officialUrl:"https://www.showakinen-koen.jp/",
+          name:{en:"Showa Memorial Park",ja:"国営昭和記念公園",it:"Parco Commemorativo Showa",ru:"Парк Сёва"},
+          location:{en:"Tokyo",ja:"東京都立川市",it:"Tokyo",ru:"Токио"},
+          shortDesc:{en:"Nemophila, poppies, ginkgo",ja:"ネモフィラ・ポピー・イチョウ",it:"Nemorilla, papaveri, ginkgo",ru:"Немофила, маки, гинкго"},
+          fullDesc:{en:"Vast park with seasonal flowers, Japanese garden, and open lawns.",ja:"四季の花々、日本庭園、広々とした芝生。",it:"Vasto parco con fiori stagionali, giardino giapponese.",ru:"Огромный парк с сезонными цветами, японским садом."},
+          nearby:{en:"Tachikawa Aircraft Memorial Park, Showa Kinen Park Ice Rink",ja:"立川飛行機記念公園、昭和記念公園アイススケート場",it:"Parco memoriale aereo Tachikawa, Pista di ghiaccio",ru:"Мемориальный парк авиации Татикава, ледовый каток"},
+          travelTips:{en:"Rent a bicycle at the park; cherry blossoms in spring.",ja:"園内レンタサイクル、春は桜も。",it:"Noleggia bici nel parco; ciliegi in primavera.",ru:"Арендуйте велосипед в парке; весной сакура."},
+          access:{en:"2 min walk from Tachikawa Station (Tachikawa Gate).",ja:"立川駅から徒歩2分（立川口）。",it:"2 min a piedi da stazione Tachikawa.",ru:"2 минуты пешком от станции Татикава."} },
+        { id:6, img:"https://picsum.photos/id/29/400/250", officialUrl:"https://www.vernypark.com/",
+          name:{en:"Verny Park",ja:"ヴェルニー公園",it:"Parco Verny",ru:"Парк Верни"},
+          location:{en:"Kanagawa",ja:"神奈川県横須賀市",it:"Kanagawa",ru:"Канагава"},
+          shortDesc:{en:"French rose garden with ocean view",ja:"海を見渡すフランス式バラ園",it:"Giardino di rose francese vista mare",ru:"Французский розарий с видом на океан"},
+          fullDesc:{en:"Romantic rose garden overlooking Yokosuka Bay.",ja:"横須賀の海を望むロマンチックなバラ園。",it:"Romantico giardino di rose sulla baia di Yokosuka.",ru:"Романтический розарий с видом на залив Йокосука."},
+          nearby:{en:"Sarushima Island, Yokosuka Naval Base",ja:"猿島、横須賀海軍基地",it:"Isola Sarushima, Base navale di Yokosuka",ru:"Остров Сарусима, военно-морская база Йокосука"},
+          travelTips:{en:"Late May to early June best for roses; sunset beautiful.",ja:"5月下旬〜6月上旬のバラが見頃、夕日も美しい。",it:"Fine maggio-inizio giugno tramonti bellissimi.",ru:"С конца мая до начала июня; красивые закаты."},
+          access:{en:"7 min walk from Yokosuka-Chuo Station.",ja:"横須賀中央駅から徒歩7分。",it:"7 min a piedi da stazione Yokosuka-Chuo.",ru:"7 минут пешком от станции Йокосука-Тюо."} },
+        { id:7, img:"https://picsum.photos/id/45/400/250", officialUrl:"https://odawara-flower-garden.jp/",
+          name:{en:"Odawara Flower Garden",ja:"小田原フラワーガーデン",it:"Giardino Floreale Odawara",ru:"Цветочный сад Одавара"},
+          location:{en:"Kanagawa",ja:"神奈川県小田原市",it:"Kanagawa",ru:"Канагава"},
+          shortDesc:{en:"Azaleas, cherry blossoms, ocean view",ja:"ツツジ・サクラ・海の眺望",it:"Azalee, ciliegi, vista mare",ru:"Азалии, сакура, вид на океан"},
+          fullDesc:{en:"Seasonal flowers with a spectacular view of Sagami Bay.",ja:"相模湾を望む絶景の中で四季の花を楽しめる。",it:"Fiori stagionali con vista sulla baia di Sagami.",ru:"Сезонные цветы с видом на залив Сагами."},
+          nearby:{en:"Odawara Castle, Ishigakiyama Ichiya Castle Ruins",ja:"小田原城、石垣山一夜城跡",it:"Castello di Odawara, ruderi castello Ishigakiyama",ru:"Замок Одавара, руины замка Исигакияма"},
+          travelTips:{en:"Combine with castle visit; April for cherry and azalea.",ja:"城と合わせて、4月は桜とツツジ。",it:"Unisci visita al castello; aprile ciliegi e azalee.",ru:"Совместите с замком; апрель — сакура и азалии."},
+          access:{en:"15 min by bus from Odawara Station.",ja:"小田原駅からバス15分。",it:"15 min di bus da stazione Odawara.",ru:"15 минут на автобусе от станции Одавара."} },
+        { id:8, img:"https://picsum.photos/id/24/400/250", officialUrl:"https://www.city.chichibu.lg.jp/",
+          name:{en:"Hitsujiyama Park",ja:"羊山公園",it:"Parco Hitsujiyama",ru:"Парк Хицудзияма"},
+          location:{en:"Saitama",ja:"埼玉県秩父市",it:"Saitama",ru:"Сайтама"},
+          shortDesc:{en:"400,000 moss phlox (pink carpet)",ja:"約40万株の芝桜",it:"400.000 fiori di muschio",ru:"400 000 флоксов"},
+          fullDesc:{en:"Stunning pink carpet of shibazakura in spring.",ja:"春にはピンクの芝桜の絨毯が丘を染める。",it:"Tappeto rosa di fiori di muschio in primavera.",ru:"Потрясающий розовый ковёр из флоксов весной."},
+          nearby:{en:"Chichibu Shrine, Nagatoro Iwadatami",ja:"秩父神社、長瀞岩畳",it:"Santuario Chichibu, Nagatoro Iwadatami",ru:"Святилище Титибу, Нагаторо Ивадатами"},
+          travelTips:{en:"Mid-April to early May best; wear comfortable shoes.",ja:"4月中旬〜5月上旬、歩きやすい靴で。",it:"Metà aprile-inizio maggio, scarpe comode.",ru:"С середины апреля до начала мая, удобная обувь."},
+          access:{en:"20 min walk from Seibu-Chichibu Station.",ja:"西武秩父駅から徒歩20分。",it:"20 min a piedi da stazione Seibu-Chichibu.",ru:"20 минут пешком от станции Сэйбу-Титибу."} },
+        { id:9, img:"https://picsum.photos/id/94/400/250", officialUrl:"https://www.city.satte.lg.jp/",
+          name:{en:"Gongendo Sakura Embankment",ja:"権現堂桜堤",it:"Diga dei Ciliegi Gongendo",ru:"Дамба сакуры Гонгэндо"},
+          location:{en:"Saitama",ja:"埼玉県幸手市",it:"Saitama",ru:"Сайтама"},
+          shortDesc:{en:"1km cherry tunnel × rapeseed",ja:"1km桜トンネルと菜の花",it:"Tunnel ciliegi 1km e colza",ru:"Тоннель сакуры 1 км и рапс"},
+          fullDesc:{en:"Walk under cherry blossoms with yellow rapeseed flowers.",ja:"ピンクの桜と黄色い菜の花のコラボは絶景。",it:"Camminata sotto ciliegi in fiore con colza gialla.",ru:"Прогулка под цветущей сакурой на фоне жёлтого рапса."},
+          nearby:{en:"Satte Gonendo Park, Mizubuneen fishing pond",ja:"権現堂公園、みずぶね園釣り池",it:"Parco Gonendo, stagno pesca Mizubuneen",ru:"Парк Гонэндо, пруд для рыбалки Мидзубунээн"},
+          travelTips:{en:"Late March to early April; go on weekday to avoid crowds.",ja:"3月下旬〜4月上旬、平日がおすすめ。",it:"Fine marzo-inizio aprile; giorni feriali.",ru:"С конца марта до начала апреля; будние дни."},
+          access:{en:"15 min bus from Satte Station.",ja:"幸手駅からバス15分。",it:"15 min di bus da stazione Satte.",ru:"15 минут на автобусе от станции Саттэ."} },
+        { id:10, img:"https://picsum.photos/id/56/400/250", officialUrl:"https://www.city.maebashi.gunma.jp/",
+          name:{en:"Kadokura Rose Garden",ja:"門倉ローズガーデン",it:"Giardino delle Rose Kadokura",ru:"Розарий Кадокура"},
+          location:{en:"Gunma",ja:"群馬県前橋市",it:"Gunma",ru:"Гумма"},
+          shortDesc:{en:"7,000 roses, color-changing",ja:"約7,000本のバラ、花色変化",it:"7.000 rose, colori mutevoli",ru:"7000 роз, меняющие цвет"},
+          fullDesc:{en:"Large rose garden with rare varieties. Spring and autumn best.",ja:"希少種を含む大バラ園。春と秋が見頃。",it:"Grande roseto con varietà rare. Ottimo in primavera e autunno.",ru:"Большой розарий с редкими сортами. Лучше весной и осенью."},
+          nearby:{en:"Maebashi Castle ruins, Gunma Flower Park",ja:"前橋城跡、ぐんまフラワーパーク",it:"Rovine castello Maebashi, Parco floreale Gunma",ru:"Руины замка Маэбаси, Цветочный парк Гумма"},
+          travelTips:{en:"Best in late May and October; rose scent is amazing.",ja:"5月下旬と10月が見頃、バラの香りも絶品。",it:"Fine maggio e ottobre; profumo di rose.",ru:"Лучшее в конце мая и октябре; аромат роз."},
+          access:{en:"20 min bus from Maebashi Station.",ja:"前橋駅からバス20分。",it:"20 min di bus da stazione Maebashi.",ru:"20 минут на автобусе от станции Маэбаси."} },
+        { id:11, img:"https://picsum.photos/id/35/400/250", officialUrl:"https://www.ashikaga.co.jp/flowerpark/",
+          name:{en:"Ashikaga Flower Park",ja:"あしかがフラワーパーク",it:"Ashikaga Flower Park",ru:"Цветочный парк Асикага"},
+          location:{en:"Tochigi",ja:"栃木県足利市",it:"Tochigi",ru:"Тотиги"},
+          shortDesc:{en:"150-year-old wisteria & tunnel",ja:"樹齢150年の大藤と藤トンネル",it:"Glicine secolare e tunnel",ru:"150-летняя глициния и туннель"},
+          fullDesc:{en:"World-famous wisteria garden. Illumination at night.",ja:"世界的に有名な藤棚。夜のライトアップも美しい。",it:"Giardino di glicine famoso nel mondo. Illuminazioni notturne.",ru:"Всемирно известный сад глициний. Ночная подсветка."},
+          nearby:{en:"Ashikaga Gakko (oldest school), Banna-ji Temple",ja:"足利学校（最古の学校）、鑁阿寺",it:"Ashikaga Gakko, tempio Banna-ji",ru:"Школа Асикага, храм Банна-дзи"},
+          travelTips:{en:"Late April to mid-May; night illumination is must-see.",ja:"4月下旬〜5月中旬、夜のライトアップ必見。",it:"Fine aprile-metà maggio; illuminazione notturna.",ru:"С конца апреля до середины мая; ночная подсветка обязательна."},
+          access:{en:"10 min walk from Ashikaga Station (JR or Tobu).",ja:"足利駅（JR・東武）から徒歩10分。",it:"10 min a piedi da stazione Ashikaga.",ru:"10 минут пешком от станции Асикага."} },
+        { id:12, img:"https://picsum.photos/id/48/400/250", officialUrl:"https://www.tanbara-lavender.com/",
+          name:{en:"Tanbara Lavender Park",ja:"たんばらラベンダーパーク",it:"Parco della Lavanda Tanbara",ru:"Лавандовый парк Танбара"},
+          location:{en:"Gunma",ja:"群馬県沼田市",it:"Gunma",ru:"Гумма"},
+          shortDesc:{en:"50,000 lavender plants",ja:"約5万株のラベンダー",it:"50.000 piante di lavanda",ru:"50 000 кустов лаванды"},
+          fullDesc:{en:"Kanto's largest lavender field. Peak mid-July to August.",ja:"関東最大級のラベンダー畑。7月中旬〜8月見頃。",it:"Il più grande campo di lavanda del Kanto. Fioritura luglio-agosto.",ru:"Крупнейшее лавандовое поле в Канто. Пик в июле-августе."},
+          nearby:{en:"Numata Park, Fukiware Falls",ja:"沼田公園、吹割の滝",it:"Parco Numata, Cascate Fukiware",ru:"Парк Нумата, водопад Фукиварэ"},
+          travelTips:{en:"Bring insect repellent; lavender ice cream recommended.",ja:"虫除け持参、ラベンダーソフトクリームおすすめ。",it:"Repellente insetti; gelato alla lavanda.",ru:"Берите средство от насекомых; лавандовое мороженое."},
+          access:{en:"15 min bus from JR Numata Station (seasonal service).",ja:"JR沼田駅からバス15分（季節運行）。",it:"15 min di bus da stazione Numata (stagionale).",ru:"15 минут на автобусе от станции Нумата (сезонный)."} }
     ];
-
-    // 残りの spot データ (id4〜id12) 実際のコードには完全に記述されています。
-    // この説明では省略しますが、最終提供のコードには全12スポットの詳細情報（nearby, travelTips, access）がすべて含まれています。
 
     let currentLang = "en";
     let currentView = "main";
@@ -355,8 +413,7 @@
     const spotsGrid = document.getElementById('spotsGrid');
 
     function t(obj) { return obj[currentLang] || obj.en; }
-
-    function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
     function renderMain() {
         if (!spotsGrid) return;
@@ -364,7 +421,6 @@
         spots.forEach(spot => {
             const card = document.createElement('div');
             card.className = 'card';
-            card.dataset.id = spot.id;
             card.innerHTML = `
                 <img class="card-img" src="${spot.img}" alt="${t(spot.name)}" loading="lazy">
                 <div class="card-content">
@@ -395,20 +451,9 @@
             <img class="detail-img" src="${spot.img}" alt="${t(spot.name)}">
             <p><strong>📍 ${escapeHtml(t(spot.location))}</strong></p>
             <p>${escapeHtml(t(spot.fullDesc))}</p>
-            
-            <div class="info-section">
-                <h3>🌿 Nearby spots & scenery</h3>
-                <p>${escapeHtml(t(spot.nearby))}</p>
-            </div>
-            <div class="info-section">
-                <h3>💡 Travel tips</h3>
-                <p>${escapeHtml(t(spot.travelTips))}</p>
-            </div>
-            <div class="info-section">
-                <h3>🚌 Access</h3>
-                <p>${escapeHtml(t(spot.access))}</p>
-            </div>
-            
+            <div class="info-section"><h3>🌿 Nearby spots & scenery</h3><p>${escapeHtml(t(spot.nearby))}</p></div>
+            <div class="info-section"><h3>💡 Travel tips</h3><p>${escapeHtml(t(spot.travelTips))}</p></div>
+            <div class="info-section"><h3>🚌 Access</h3><p>${escapeHtml(t(spot.access))}</p></div>
             <a class="official-link" href="${spot.officialUrl}" target="_blank" rel="noopener">🌐 ${currentLang==='en'?'Official Website':currentLang==='ja'?'公式サイト':currentLang==='it'?'Sito ufficiale':'Официальный сайт'}</a>
         `;
         mainView.classList.add('hidden');
@@ -429,21 +474,15 @@
         currentLang = lang;
         if (currentView === "main") renderMain();
         else if (currentView === "detail" && currentSpotId) showDetail(currentSpotId);
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
     }
 
-    function setDarkMode(isDark) {
-        if(isDark) { document.body.classList.remove('light'); localStorage.setItem('theme','dark'); }
-        else { document.body.classList.add('light'); localStorage.setItem('theme','light'); }
-    }
-
+    function setDarkMode(isDark) { isDark ? document.body.classList.remove('light') : document.body.classList.add('light'); localStorage.setItem('theme', isDark ? 'dark' : 'light'); }
     function initTheme() { localStorage.getItem('theme') === 'light' ? setDarkMode(false) : setDarkMode(true); }
 
-    window.addEventListener('popstate', (event) => {
-        if(event.state?.view === 'main') showMain();
-        else if(event.state?.view === 'detail' && event.state.id) showDetail(event.state.id);
+    window.addEventListener('popstate', (e) => {
+        if (e.state?.view === 'main') showMain();
+        else if (e.state?.view === 'detail' && e.state.id) showDetail(e.state.id);
         else showMain();
     });
 
