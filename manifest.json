@@ -1,0 +1,25 @@
+{
+  "name": "Flower Trip Tokyo",
+  "short_name": "花めぐり",
+  "description": "Tokyo area flower spots with 4 languages (EN/JP/IT/RU)",
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#1e2a1e",
+  "background_color": "#121212",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
