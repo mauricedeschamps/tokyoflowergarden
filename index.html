@@ -288,31 +288,14 @@
             </div>
         </div>
 
-<div class="map-container" style="background: var(--bg-card); padding: 1rem; text-align: center;">
-    <div style="background: var(--bg-body); border-radius: 24px; padding: 1.2rem;">
-        <h3 style="color: var(--accent); margin-bottom: 0.8rem;">🗺️ 関東エリア アクセスガイド</h3>
-        <p style="margin-bottom: 0.8rem;">
-            🌸 掲載の12スポットは、<strong>東京駅</strong>を起点に電車・バスで日帰り可能な範囲です。<br>
-            各スポットの詳細ページで「Access」をご確認ください。
-        </p>
-        <hr style="border-color: var(--border); margin: 1rem 0;">
-        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;">
-            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚆 JR東日本</span>
-            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚌 高速バス</span>
-            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚗 レンタカー推奨エリアあり</span>
+<!-- Google Map (下部) -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25940.14732547666!2d139.75448987021512!3d35.68039932664863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f750b%3A0xadf2a0bee3a6d1b2!2sTokyo%20Station!5e0!3m2!1sen!2sjp!4v1714567890123!5m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p style="margin-top: 1rem; font-size: 0.85rem;">
-            📍 <strong>主要アクセス駅</strong><br>
-            ひたち海浜公園: JR勝田駅 / マザー牧場: JR富津駅 / あしかがフラワーパーク: JR足利駅<br>
-            羊山公園: 西武秩父駅 / 昭和記念公園: 立川駅 / 他は各詳細ページ参照
-        </p>
-        <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-secondary);">
-            ※ Google Maps埋め込みが利用できない環境では、代わりに交通情報を表示しています。<br>
-            各施設の公式サイトへのリンクも詳細ページからご利用いただけます。
-        </p>
     </div>
-</div>
 
+    <!-- 詳細画面（初期非表示） -->
+    <div id="detailView" class="detail-view hidden"></div>
 
     <!-- 詳細画面 -->
     <div id="detailView" class="detail-view hidden"></div>
