@@ -260,35 +260,16 @@
 
     <!-- メイン画面 -->
     <div id="mainView">
-        <!-- スポンサー枠 上部 (後から画像URLと公式URLを設定可能) -->
-        <div class="sponsor-area" id="sponsorTop">
-            <!-- 
-                スポンサー画像を追加する場合:
-                <a href="https://公式サイト.com" target="_blank" rel="noopener">
-                    <img class="sponsor-img" src="https://あなたの画像URL.jpg" alt="スポンサー名">
-                </a>
-                必要に応じてテキストも変更してください。
-            -->
-            <div class="sponsor-placeholder">
-                📢 スポンサー枠 (画像URL + 公式リンクを後から追加)<br>
-                <img class="https://image.onecareer.jp/uploads/company/square_logo/78/3da162a1-a97b-4a3f-92ea-d82dae944412-JR%E6%9D%B1%E6%97%A5%E6%9C%AC_%E5%9F%BA%E6%9C%AC%E3%83%AD%E3%82%B4__.jpg" src="https://www.japan.travel/en/plan/getting-around/jr/" alt="sponsor placeholder">
-                <p><small>※ 上記イメージとリンクを編集してください</small></p>
-            </div>
-        </div>
+        <!-- スポンサー枠 上部（動的に生成） -->
+        <div id="sponsorTop" class="sponsor-area"></div>
 
         <!-- スポット一覧グリッド -->
         <div id="spotsGrid" class="grid"></div>
 
-        <!-- スポンサー枠 下部 -->
-        <div class="sponsor-area" id="sponsorBottom">
-            <div class="sponsor-placeholder">
-                🤝 パートナー募集<br>
-                <img class="sponsor-img" src="https://via.placeholder.com/800x120?text=Sponsor+Zone" alt="sponsor bottom">
-                <p><small>画像URLと公式サイトを差し替え可能</small></p>
-            </div>
-        </div>
+        <!-- スポンサー枠 下部（動的に生成） -->
+        <div id="sponsorBottom" class="sponsor-area"></div>
 
-<!-- Google Map (下部) -->
+        <!-- Google Map (そのまま維持) -->
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25940.14732547666!2d139.75448987021512!3d35.68039932664863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f750b%3A0xadf2a0bee3a6d1b2!2sTokyo%20Station!5e0!3m2!1sen!2sjp!4v1714567890123!5m2!1sen!2sjp" allowfullscreen loading="lazy"></iframe>
         </div>
@@ -297,7 +278,6 @@
     <!-- 詳細画面（初期非表示） -->
     <div id="detailView" class="detail-view hidden"></div>
 
-
     <footer>
         <p>Contact us<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></p>
         <p style="font-size:0.7rem; margin-top:0.5rem;">© Flower Trip Tokyo | 花の名所12選</p>
@@ -305,6 +285,22 @@
 </div>
 
 <script>
+    // ========================
+    // スポンサー設定 (ここを編集するだけ！)
+    // ========================
+    
+    // 上部スポンサー
+    const sponsorTopImageUrl = "https://www.japan.travel/en/plan/getting-around/jr/";   // ← 画像URLをここに入力
+    const sponsorTopOfficialUrl = "https://www.jreast.co.jp/";                         // ← 公式サイトURLをここに入力
+    
+    // 下部スポンサー（未設定の場合はプレースホルダー表示）
+    const sponsorBottomImageUrl = "";   // ← 画像URLを入れる（空の場合はプレースホルダー）
+    const sponsorBottomOfficialUrl = ""; // ← 公式サイトURLを入れる（空の場合はリンクなし）
+    
+    // ※ 画像URLを入れない場合は、プレースホルダー画像（「スポンサー枠」と表示）になります。
+    // ※ 公式サイトURLが空の場合は、画像が単独で表示されます（リンクなし）。
+    // ========================
+
     // ---------- スポットデータ（全12ヶ所・詳細情報付き）----------
     const spots = [
         { id:1, img:"https://picsum.photos/id/104/400/250", officialUrl:"https://hitachikaihin.jp/",
@@ -413,6 +409,39 @@
     const detailViewDiv = document.getElementById('detailView');
     const spotsGrid = document.getElementById('spotsGrid');
 
+    // スポンサー領域を動的に生成する関数
+    function renderSponsors() {
+        // 上部スポンサー
+        const sponsorTopDiv = document.getElementById('sponsorTop');
+        if (sponsorTopDiv) {
+            if (sponsorTopImageUrl && sponsorTopImageUrl.trim() !== "") {
+                const imgHtml = `<img class="sponsor-img" src="${sponsorTopImageUrl}" alt="Sponsor">`;
+                if (sponsorTopOfficialUrl && sponsorTopOfficialUrl.trim() !== "") {
+                    sponsorTopDiv.innerHTML = `<a href="${sponsorTopOfficialUrl}" target="_blank" rel="noopener" class="sponsor-link">${imgHtml}</a>`;
+                } else {
+                    sponsorTopDiv.innerHTML = imgHtml;
+                }
+            } else {
+                sponsorTopDiv.innerHTML = `<div class="sponsor-placeholder">📢 スポンサー枠 (画像URLを設定してください)</div>`;
+            }
+        }
+
+        // 下部スポンサー
+        const sponsorBottomDiv = document.getElementById('sponsorBottom');
+        if (sponsorBottomDiv) {
+            if (sponsorBottomImageUrl && sponsorBottomImageUrl.trim() !== "") {
+                const imgHtml = `<img class="sponsor-img" src="${sponsorBottomImageUrl}" alt="Sponsor">`;
+                if (sponsorBottomOfficialUrl && sponsorBottomOfficialUrl.trim() !== "") {
+                    sponsorBottomDiv.innerHTML = `<a href="${sponsorBottomOfficialUrl}" target="_blank" rel="noopener" class="sponsor-link">${imgHtml}</a>`;
+                } else {
+                    sponsorBottomDiv.innerHTML = imgHtml;
+                }
+            } else {
+                sponsorBottomDiv.innerHTML = `<div class="sponsor-placeholder">🤝 パートナー募集 (画像URLを設定すると表示されます)</div>`;
+            }
+        }
+    }
+
     function t(obj) { return obj[currentLang] || obj.en; }
     function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
@@ -491,6 +520,7 @@
 
     function init() {
         initTheme();
+        renderSponsors();      // スポンサー表示
         renderMain();
         document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => updateLanguage(btn.dataset.lang)));
         document.getElementById('darkModeBtn').addEventListener('click', () => setDarkMode(true));
