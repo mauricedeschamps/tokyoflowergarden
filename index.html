@@ -288,11 +288,31 @@
             </div>
         </div>
 
-        <!-- Googleマップ: 関東広域（東京・埼玉・千葉・神奈川・茨城・栃木・群馬を中心） -->
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m54!1m12!1m3!1d207706.4123017664!2d139.4071143626609!3d35.96906670420519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m39!1i0!3e6!4m5!1s0x60188b86fcb60fa9%3A0x563a4b6afbfbb5fa!2z5p2x5Lqs6aeF!3m2!1d35.6803994!2d139.7690174!4m5!1s0x60188d63949e9c6f%3A0xaf530de36b6f0e89!2z5Z-654ix55m96KGX!3m2!1d35.8717423!2d139.6483857!4m5!1s0x6018d0b8b03dcd1f%3A0x27da1be790c099c5!2z5Y2D6JyJ5bed5Yy66JGJ5b-D5bGL!3m2!1d35.9692945!2d140.5399553!4m5!1s0x6018fb171f282793%3A0xba2e9b29e8cf154d!2z6Zai5Y2D5biC!3m2!1d36.3412747!2d139.5078493!4m5!1s0x601ef9d16b47ccd1%3A0xfa41df2b3ab2f59b!2z44Gz44KT44Gu5bGL44K444O8!3m2!1d35.9013223!2d139.719155!4m5!1s0x6018bbe222e7f767%3A0x31efbdd06f02b982!2z6JOy6JCJ5bed44K544Oz44O8!3m2!1d35.888112499999995!2d139.7261013!5e0!3m2!1sen!2sjp!4v1714567890123" allowfullscreen loading="lazy"></iframe>
+<div class="map-container" style="background: var(--bg-card); padding: 1rem; text-align: center;">
+    <div style="background: var(--bg-body); border-radius: 24px; padding: 1.2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 0.8rem;">🗺️ 関東エリア アクセスガイド</h3>
+        <p style="margin-bottom: 0.8rem;">
+            🌸 掲載の12スポットは、<strong>東京駅</strong>を起点に電車・バスで日帰り可能な範囲です。<br>
+            各スポットの詳細ページで「Access」をご確認ください。
+        </p>
+        <hr style="border-color: var(--border); margin: 1rem 0;">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;">
+            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚆 JR東日本</span>
+            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚌 高速バス</span>
+            <span style="background: var(--btn-bg); padding: 0.3rem 0.8rem; border-radius: 40px;">🚗 レンタカー推奨エリアあり</span>
         </div>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            📍 <strong>主要アクセス駅</strong><br>
+            ひたち海浜公園: JR勝田駅 / マザー牧場: JR富津駅 / あしかがフラワーパーク: JR足利駅<br>
+            羊山公園: 西武秩父駅 / 昭和記念公園: 立川駅 / 他は各詳細ページ参照
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-secondary);">
+            ※ Google Maps埋め込みが利用できない環境では、代わりに交通情報を表示しています。<br>
+            各施設の公式サイトへのリンクも詳細ページからご利用いただけます。
+        </p>
     </div>
+</div>
+
 
     <!-- 詳細画面 -->
     <div id="detailView" class="detail-view hidden"></div>
