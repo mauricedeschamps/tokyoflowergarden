@@ -1,7 +1,7 @@
 {
   "name": "Flower Trip Tokyo",
   "short_name": "花めぐり",
-  "description": "Tokyo area flower spots - EN/JP/IT/RU",
+  "description": "12 flower spots around Tokyo - EN/JP/IT/RU",
   "start_url": "index.html",
   "display": "standalone",
   "theme_color": "#1e2a1e",
